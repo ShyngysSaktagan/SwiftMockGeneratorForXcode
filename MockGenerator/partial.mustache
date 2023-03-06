@@ -7,13 +7,13 @@
 {{#property}}
 
     {{#hasSetter}}
-        {{scope}} var invoked{{capitalizedUniqueName}}Setter = false
-        {{scope}} var invoked{{capitalizedUniqueName}}SetterCount = 0
-        {{scope}} var invoked{{capitalizedUniqueName}}: {{{optionalType}}}
-        {{scope}} var invoked{{capitalizedUniqueName}}List = [{{{type}}}]()
+        {{scope}} var {{name}}Setter = false
+        {{scope}} var {{name}}SetterCount = 0
+        {{scope}} var {{name}}: {{{optionalType}}}
+        {{scope}} var {{name}}List = [{{{type}}}]()
     {{/hasSetter}}
-    {{scope}} var invoked{{capitalizedUniqueName}}Getter = false
-    {{scope}} var invoked{{capitalizedUniqueName}}GetterCount = 0
+    {{scope}} var {{name}}Getter = false
+    {{scope}} var {{name}}GetterCount = 0
     {{scope}} var stubbed{{capitalizedUniqueName}}: {{{iuoType}}} {{{defaultValueAssignment}}}
 
     {{#isImplemented}}
@@ -24,10 +24,10 @@
 
     {{#hasSetter}}
         set {
-        invoked{{capitalizedUniqueName}}Setter = true
-        invoked{{capitalizedUniqueName}}SetterCount += 1
-        invoked{{capitalizedUniqueName}} = newValue
-        invoked{{capitalizedUniqueName}}List.append(newValue)
+        {{name}}Setter = true
+        {{name}}SetterCount += 1
+        {{name}} = newValue
+        {{name}}List.append(newValue)
         {{#isImplemented}}
             if forwardToOriginal{{capitalizedUniqueName}} {
             super.{{name}} = newValue
@@ -35,8 +35,8 @@
         {{/isImplemented}}
         }
         get {
-        invoked{{capitalizedUniqueName}}Getter = true
-        invoked{{capitalizedUniqueName}}GetterCount += 1
+        {{name}}Getter = true
+        {{name}}GetterCount += 1
         {{#isImplemented}}
             if forwardToOriginal{{capitalizedUniqueName}} {
             return super.{{name}}
@@ -46,8 +46,8 @@
         }
     {{/hasSetter}}
     {{^hasSetter}}
-        invoked{{capitalizedUniqueName}}Getter = true
-        invoked{{capitalizedUniqueName}}GetterCount += 1
+        {{name}}Getter = true
+        {{name}}GetterCount += 1
         {{#isImplemented}}
             if forwardToOriginal{{capitalizedUniqueName}} {
             return super.{{name}}
@@ -62,23 +62,23 @@
 
 {{#subscript}}
 
-    {{scope}} var invoked{{capitalizedUniqueName}}Getter = false
-    {{scope}} var invoked{{capitalizedUniqueName}}GetterCount = 0
+    {{scope}} var {{name}}Getter = false
+    {{scope}} var {{name}}GetterCount = 0
     {{#escapingParameters}}
-        {{scope}} var invoked{{capitalizedUniqueName}}GetterParameters: {{{tupleRepresentation}}}?
-        {{scope}} var invoked{{capitalizedUniqueName}}GetterParametersList = [{{{tupleRepresentation}}}]()
+        {{scope}} var {{name}}GetterParameters: {{{tupleRepresentation}}}?
+        {{scope}} var {{name}}GetterParametersList = [{{{tupleRepresentation}}}]()
     {{/escapingParameters}}
     {{scope}} var stubbed{{capitalizedUniqueName}}Result: {{{resultType.iuoType}}} {{{resultType.defaultValueAssignment}}}
 
     {{#hasSetter}}
-        {{scope}} var invoked{{capitalizedUniqueName}}Setter = false
-        {{scope}} var invoked{{capitalizedUniqueName}}SetterCount = 0
+        {{scope}} var {{name}}Setter = false
+        {{scope}} var {{name}}SetterCount = 0
         {{#escapingParameters}}
-            {{scope}} var invoked{{capitalizedUniqueName}}SetterParameters: {{{tupleRepresentation}}}?
-            {{scope}} var invoked{{capitalizedUniqueName}}SetterParametersList = [{{{tupleRepresentation}}}]()
+            {{scope}} var {{name}}SetterParameters: {{{tupleRepresentation}}}?
+            {{scope}} var {{name}}SetterParametersList = [{{{tupleRepresentation}}}]()
         {{/escapingParameters}}
-        {{scope}} var invoked{{capitalizedUniqueName}}: {{{resultType.type}}}?
-        {{scope}} var invoked{{capitalizedUniqueName}}List = [{{{resultType.type}}}]()
+        {{scope}} var {{name}}: {{{resultType.type}}}?
+        {{scope}} var {{name}}List = [{{{resultType.type}}}]()
     {{/hasSetter}}
 
     {{#isImplemented}}
@@ -89,14 +89,14 @@
 
     {{#hasSetter}}
         set {
-        invoked{{capitalizedUniqueName}}Setter = true
-        invoked{{capitalizedUniqueName}}SetterCount += 1
+        {{name}}Setter = true
+        {{name}}SetterCount += 1
         {{#escapingParameters}}
-            invoked{{capitalizedUniqueName}}SetterParameters = {{{tupleAssignment}}}
-            invoked{{capitalizedUniqueName}}SetterParametersList.append({{{tupleAssignment}}})
+            {{name}}SetterParameters = {{{tupleAssignment}}}
+            {{name}}SetterParametersList.append({{{tupleAssignment}}})
         {{/escapingParameters}}
-        invoked{{capitalizedUniqueName}} = newValue
-        invoked{{capitalizedUniqueName}}List.append(newValue)
+        {{name}} = newValue
+        {{name}}List.append(newValue)
         {{#isImplemented}}
             if forwardToOriginal{{capitalizedUniqueName}} {
             super{{functionCall}} = newValue
@@ -104,11 +104,11 @@
         {{/isImplemented}}
         }
         get {
-        invoked{{capitalizedUniqueName}}Getter = true
-        invoked{{capitalizedUniqueName}}GetterCount += 1
+        {{name}}Getter = true
+        {{name}}GetterCount += 1
         {{#escapingParameters}}
-            invoked{{capitalizedUniqueName}}GetterParameters = {{{tupleAssignment}}}
-            invoked{{capitalizedUniqueName}}GetterParametersList.append({{{tupleAssignment}}})
+            {{name}}GetterParameters = {{{tupleAssignment}}}
+            {{name}}GetterParametersList.append({{{tupleAssignment}}})
         {{/escapingParameters}}
         {{#isImplemented}}
             if forwardToOriginal{{capitalizedUniqueName}} {
@@ -119,11 +119,11 @@
         }
     {{/hasSetter}}
     {{^hasSetter}}
-        invoked{{capitalizedUniqueName}}Getter = true
-        invoked{{capitalizedUniqueName}}GetterCount += 1
+        {{name}}Getter = true
+        {{name}}GetterCount += 1
         {{#escapingParameters}}
-            invoked{{capitalizedUniqueName}}GetterParameters = {{{tupleAssignment}}}
-            invoked{{capitalizedUniqueName}}GetterParametersList.append({{{tupleAssignment}}})
+            {{name}}GetterParameters = {{{tupleAssignment}}}
+            {{name}}GetterParametersList.append({{{tupleAssignment}}})
         {{/escapingParameters}}
         {{#isImplemented}}
             if forwardToOriginal{{capitalizedUniqueName}} {
@@ -138,12 +138,12 @@
 
 {{#method}}
 
-    {{scope}} var invoked{{capitalizedUniqueName}} = false
-    {{scope}} var invoked{{capitalizedUniqueName}}Count = 0
+    {{scope}} var {{name}} = false
+    {{scope}} var {{name}}Count = 0
 
     {{#escapingParameters}}
-        {{scope}} var invoked{{capitalizedUniqueName}}Parameters: {{{tupleRepresentation}}}?
-        {{scope}} var invoked{{capitalizedUniqueName}}ParametersList = [{{{tupleRepresentation}}}]()
+        {{scope}} var {{name}}Parameters: {{{tupleRepresentation}}}?
+        {{scope}} var {{name}}ParametersList = [{{{tupleRepresentation}}}]()
     {{/escapingParameters}}
 
     {{#closureParameter}}
@@ -169,12 +169,12 @@
 
     {{{declarationText}}} {
 
-    invoked{{capitalizedUniqueName}} = true
-    invoked{{capitalizedUniqueName}}Count += 1
+    {{name}} = true
+    {{name}}Count += 1
 
     {{#escapingParameters}}
-        invoked{{capitalizedUniqueName}}Parameters = {{{tupleAssignment}}}
-        invoked{{capitalizedUniqueName}}ParametersList.append({{{tupleAssignment}}})
+        {{name}}Parameters = {{{tupleAssignment}}}
+        {{name}}ParametersList.append({{{tupleAssignment}}})
     {{/escapingParameters}}
 
     {{#isImplemented}}
