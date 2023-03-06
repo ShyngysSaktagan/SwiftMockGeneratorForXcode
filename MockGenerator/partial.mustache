@@ -4,20 +4,26 @@
     }
 {{/initializer}}
 
+{{#initializer}}
+    {{{declarationText}}} {
+    {{{initializerCall}}}
+    }
+{{/initializer}}
+
 {{#property}}
 
     {{#hasSetter}}
-        {{scope}} var {{name}}Setter = false
-        {{scope}} var {{name}}SetterCount = 0
-        {{scope}} var {{name}}: {{{optionalType}}}
-        {{scope}} var {{name}}List = [{{{type}}}]()
+        private(set) var {{name}}Setter = false
+        private(set) var {{name}}SetterCount = 0
+        private(set) var {{name}}: {{{optionalType}}}
+        private(set) var {{name}}List = [{{{type}}}]()
     {{/hasSetter}}
-    {{scope}} var {{name}}Getter = false
-    {{scope}} var {{name}}GetterCount = 0
+    private(set) var {{name}}Getter = false
+    private(set) var {{name}}GetterCount = 0
     {{scope}} var stubbed{{capitalizedUniqueName}}: {{{iuoType}}} {{{defaultValueAssignment}}}
 
     {{#isImplemented}}
-        {{scope}} var forwardToOriginal{{capitalizedUniqueName}} = false
+        private(set) var forwardToOriginal{{capitalizedUniqueName}} = false
     {{/isImplemented}}
 
     {{{declarationText}}} {
@@ -62,27 +68,27 @@
 
 {{#subscript}}
 
-    {{scope}} var {{name}}Getter = false
-    {{scope}} var {{name}}GetterCount = 0
+    private(set) var {{name}}Getter = false
+    private(set) var {{name}}GetterCount = 0
     {{#escapingParameters}}
-        {{scope}} var {{name}}GetterParameters: {{{tupleRepresentation}}}?
-        {{scope}} var {{name}}GetterParametersList = [{{{tupleRepresentation}}}]()
+        private(set) var {{name}}GetterParameters: {{{tupleRepresentation}}}?
+        private(set) var {{name}}GetterParametersList = [{{{tupleRepresentation}}}]()
     {{/escapingParameters}}
     {{scope}} var stubbed{{capitalizedUniqueName}}Result: {{{resultType.iuoType}}} {{{resultType.defaultValueAssignment}}}
 
     {{#hasSetter}}
-        {{scope}} var {{name}}Setter = false
-        {{scope}} var {{name}}SetterCount = 0
+        private(set) var {{name}}Setter = false
+        private(set) var {{name}}SetterCount = 0
         {{#escapingParameters}}
-            {{scope}} var {{name}}SetterParameters: {{{tupleRepresentation}}}?
-            {{scope}} var {{name}}SetterParametersList = [{{{tupleRepresentation}}}]()
+            private(set) var {{name}}SetterParameters: {{{tupleRepresentation}}}?
+            private(set) var {{name}}SetterParametersList = [{{{tupleRepresentation}}}]()
         {{/escapingParameters}}
-        {{scope}} var {{name}}: {{{resultType.type}}}?
-        {{scope}} var {{name}}List = [{{{resultType.type}}}]()
+        private(set) var {{name}}: {{{resultType.type}}}?
+        private(set) var {{name}}List = [{{{resultType.type}}}]()
     {{/hasSetter}}
 
     {{#isImplemented}}
-        {{scope}} var forwardToOriginal{{capitalizedUniqueName}} = false
+        private(set) var forwardToOriginal{{capitalizedUniqueName}} = false
     {{/isImplemented}}
 
     {{{declarationText}}} {
@@ -138,12 +144,12 @@
 
 {{#method}}
 
-    {{scope}} var {{name}} = false
-    {{scope}} var {{name}}Count = 0
+    private(set) var {{name}} = false
+    private(set) var {{name}}Count = 0
 
     {{#escapingParameters}}
-        {{scope}} var {{name}}Parameters: {{{tupleRepresentation}}}?
-        {{scope}} var {{name}}ParametersList = [{{{tupleRepresentation}}}]()
+        private(set) var {{name}}Parameters: {{{tupleRepresentation}}}?
+        private(set) var {{name}}ParametersList = [{{{tupleRepresentation}}}]()
     {{/escapingParameters}}
 
     {{#closureParameter}}
